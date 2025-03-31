@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            color: #007bff;
+        }
+
+        .section p {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>{{ data['name'] }}</h1>
+        <p>Email: {{ data['email'] }}</p>
+        <p>Phone: {{ data['phone'] }}</p>
+        <p>LinkedIn: {{ data['linkedin'] }}</p>
+        <p>Address: {{ data['address'] }}</p>
+
+        <div class="section">
+            <h3>Professional Summary</h3>
+            <p>{{ data['summary'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Work Experience</h3>
+            <p>{{ data['experience'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Education</h3>
+            <p>{{ data['education'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Skills</h3>
+            <p>{{ data['skills'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Certifications</h3>
+            <p>{{ data['certifications'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Projects</h3>
+            <p>{{ data['projects'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Languages</h3>
+            <p>{{ data['languages'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Volunteer Experience</h3>
+            <p>{{ data['volunteer'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Publications</h3>
+            <p>{{ data['publications'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Awards</h3>
+            <p>{{ data['awards'] }}</p>
+        </div>
+
+        <div class="section">
+            <h3>References</h3>
+            <p>{{ data['references'] }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
