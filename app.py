@@ -31,6 +31,8 @@ def generate_resume():
     pdf.cell(200, 10, f"Email: {data['email']}", ln=True)
     pdf.cell(200, 10, f"Phone: {data['phone']}", ln=True)
     pdf.cell(200, 10, f"LinkedIn: {data['linkedin']}", ln=True)
+    pdf.cell(200, 10, f"GitHub: {data['github']}", ln=True)
+    pdf.cell(200, 10, f"Portfolio: {data['portfolio']}", ln=True)
     pdf.cell(200, 10, f"Address: {data['address']}", ln=True)
     pdf.ln(5)
     
@@ -45,7 +47,9 @@ def generate_resume():
         ("Volunteer Experience", "volunteer"),
         ("Publications", "publications"),
         ("Awards", "awards"),
-        ("References", "references")
+        ("References", "references"),
+        ("Hobbies & Interests", "hobbies"),
+        ("Additional Information", "additional")
     ]
     
     for title, key in sections:

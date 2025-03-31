@@ -4,132 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Resume Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #4A90E2, #145DA0);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 700px;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        h1 {
-            color: #145DA0;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-weight: 600;
-            text-align: left;
-        }
-
-        input, textarea {
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 12px;
-            background-color: #145DA0;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background-color: #0d3a67;
-        }
-
-        .resume-preview {
-            margin-top: 20px;
-            background: #f4f4f4;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: left;
-        }
-
-        .download-btn {
-            margin-top: 10px;
-            background-color: #27ae60;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div class="container">
         <h1>AI Resume Generator</h1>
-        <form id="resumeForm">
+        <p class="subheading">Fill in your details to generate a professional resume.</p>
+
+        <form action="/generate" method="post">
+            <h2>Personal Information</h2>
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
 
             <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
+            <input type="email" id="email" name="email" required>
 
             <label for="phone">Phone:</label>
             <input type="text" id="phone" name="phone" required>
 
+            <label for="linkedin">LinkedIn Profile:</label>
+            <input type="text" id="linkedin" name="linkedin">
+
+            <label for="github">GitHub Profile:</label>
+            <input type="text" id="github" name="github">
+
+            <label for="portfolio">Portfolio Website:</label>
+            <input type="text" id="portfolio" name="portfolio">
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+
+            <h2>Professional Details</h2>
             <label for="summary">Professional Summary:</label>
-            <textarea id="summary" name="summary" rows="3" required></textarea>
+            <textarea id="summary" name="summary" rows="4" required></textarea>
 
-            <button type="button" onclick="generateResume()">Generate Resume</button>
+            <label for="experience">Work Experience:</label>
+            <textarea id="experience" name="experience" rows="6" required></textarea>
+
+            <label for="education">Education:</label>
+            <textarea id="education" name="education" rows="4" required></textarea>
+
+            <label for="skills">Skills:</label>
+            <textarea id="skills" name="skills" rows="4" required></textarea>
+
+            <label for="certifications">Certifications:</label>
+            <textarea id="certifications" name="certifications" rows="4"></textarea>
+
+            <label for="projects">Projects:</label>
+            <textarea id="projects" name="projects" rows="4"></textarea>
+
+            <label for="languages">Languages:</label>
+            <textarea id="languages" name="languages" rows="4"></textarea>
+
+            <label for="volunteer">Volunteer Experience:</label>
+            <textarea id="volunteer" name="volunteer" rows="4"></textarea>
+
+            <label for="publications">Publications:</label>
+            <textarea id="publications" name="publications" rows="4"></textarea>
+
+            <label for="awards">Awards:</label>
+            <textarea id="awards" name="awards" rows="4"></textarea>
+
+            <label for="references">References:</label>
+            <textarea id="references" name="references" rows="4"></textarea>
+
+            <label for="hobbies">Hobbies & Interests:</label>
+            <textarea id="hobbies" name="hobbies" rows="4"></textarea>
+
+            <label for="additional">Additional Information:</label>
+            <textarea id="additional" name="additional" rows="4"></textarea>
+
+            <button type="submit">Generate Resume (PDF)</button>
         </form>
-
-        <div class="resume-preview" id="resumePreview" style="display: none;">
-            <h2>Resume Preview</h2>
-            <p><strong>Name:</strong> <span id="previewName"></span></p>
-            <p><strong>Email:</strong> <span id="previewEmail"></span></p>
-            <p><strong>Phone:</strong> <span id="previewPhone"></span></p>
-            <p><strong>Summary:</strong> <span id="previewSummary"></span></p>
-            <button class="download-btn" onclick="downloadResume()">Download Resume</button>
-        </div>
     </div>
 
-    <script>
-        function generateResume() {
-            document.getElementById('previewName').textContent = document.getElementById('name').value;
-            document.getElementById('previewEmail').textContent = document.getElementById('email').value;
-            document.getElementById('previewPhone').textContent = document.getElementById('phone').value;
-            document.getElementById('previewSummary').textContent = document.getElementById('summary').value;
-            
-            document.getElementById('resumePreview').style.display = 'block';
-        }
-
-        function downloadResume() {
-            const resumeContent = `Name: ${document.getElementById('previewName').textContent}\n
-            Email: ${document.getElementById('previewEmail').textContent}\n
-            Phone: ${document.getElementById('previewPhone').textContent}\n
-            Summary: ${document.getElementById('previewSummary').textContent}`;
-            
-            const blob = new Blob([resumeContent], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'Resume.txt';
-            link.click();
-        }
-    </script>
+    <div class="footer">
+        <p>Powered by AI | AI Resume Generator</p>
+    </div>
 
 </body>
 </html>
